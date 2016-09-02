@@ -7,7 +7,7 @@
 angular.module('starter', ['ionic', 'starter.controllers', 'ngOpenFB', 'checklist-model'])
 
 
-.run(function($ionicPlatform, ngFB, $timeout) {
+.run(function($ionicPlatform, ngFB, $timeout, $state) {
   ngFB.init({appId: '1011131718993889'});
   
   $timeout(function() {
