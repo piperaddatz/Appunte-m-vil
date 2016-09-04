@@ -1,21 +1,12 @@
 var app = angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
 
-
-
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
-
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicLoading) {
   
 })
 
-.controller('LoginCtrl', function($scope,$http,$rootScope, $state) {
+.controller('LoginCtrl', function($scope,$http,$rootScope, $state, $ionicLoading) {
     $scope.data = {};
-    
+  
     // window.cordovaOauth = $cordovaOauth;
     // window.http = $http;
 
@@ -32,9 +23,24 @@ var app = angular.module('starter.controllers', ['starter.services', 'ngOpenFB']
     //     });
     // }
 
+    $scope.show = function() {
+      $ionicLoading.show({
+        template: '<ion-spinner icon="android"></ion-spinner>'
+      }).then(function(){
+         console.log("The loading indicator is now displayed");
+      });
+    };
+
+    $scope.hide = function(){
+      $ionicLoading.hide().then(function(){
+         console.log("The loading indicator is now hidden");
+      });
+    };  
+
     $scope.login = function() {
       console.log('Doing login', $scope.loginData);
       console.log('login?'+$scope.data.email_cellphone+' '+$scope.data.password);
+      $scope.show();
 
       $http({
         method: 'GET',
@@ -44,7 +50,9 @@ var app = angular.module('starter.controllers', ['starter.services', 'ngOpenFB']
           // Login user
            window.localStorage.setItem('user',JSON.stringify(response));
            $state.go('app.notes');
+           $scope.hide();
         }, function errorCallback(response) {
+          $scope.hide();
           console.log(response);
           alert(response.data);
       });
@@ -91,12 +99,28 @@ var app = angular.module('starter.controllers', ['starter.services', 'ngOpenFB']
     };
 })
 
-.controller('BuyAllCtrl', function($scope,$http,$rootScope, $state, $stateParams, $sce) {
+.controller('BuyAllCtrl', function($scope,$http,$rootScope, $state, $stateParams, $sce, $ionicLoading) {
   var user = JSON.parse( window.localStorage.getItem( 'user' ));
+
+  $scope.show = function() {
+    $ionicLoading.show({
+      template: '<ion-spinner icon="android"></ion-spinner>'
+    }).then(function(){
+       console.log("The loading indicator is now displayed");
+    });
+  };
+
+  $scope.hide = function(){
+    $ionicLoading.hide().then(function(){
+       console.log("The loading indicator is now hidden");
+    });
+  };
 
   $scope.trustSrc = function(src) {
     return $sce.trustAsResourceUrl(src);
   }
+
+  $scope.show();
 
   $http({
     method: 'GET',
@@ -104,29 +128,49 @@ var app = angular.module('starter.controllers', ['starter.services', 'ngOpenFB']
     params: { note_id: $stateParams.noteId, which_buy: 'full_course'}
   }).then(function successCallback(response) {
       $scope.khipu_url = response.data.transaction_url;
+      $scope.hide();
     }, function errorCallback(response) {
-      console.log(response);
       alert(response.data);
+      $scope.hide();
   });
 })
 
-.controller('BuyTopicCtrl', function($scope,$http,$rootScope, $state, $stateParams, $sce) {
+.controller('BuyTopicCtrl', function($scope,$http,$rootScope, $state, $stateParams, $sce, $ionicLoading) {
   var user = JSON.parse( window.localStorage.getItem( 'user' ));
+
+  $scope.show = function() {
+    $ionicLoading.show({
+      template: '<ion-spinner icon="android"></ion-spinner>'
+    }).then(function(){
+       console.log("The loading indicator is now displayed");
+    });
+  };
+
+  $scope.hide = function(){
+    $ionicLoading.hide().then(function(){
+       console.log("The loading indicator is now hidden");
+    });
+  };
+
+  $scope.show();
 
   $scope.trustSrc = function(src) {
     return $sce.trustAsResourceUrl(src);
-  }
+  };
+
   var array = $stateParams.topics;
-  console.log(array);
+
   $http({
     method: 'GET',
     url: 'https://appunte.herokuapp.com/api/'+user.data.token+'/transaction_create/',
     params: { note_id: $stateParams.noteId, which_buy: 'topic_course', "topics": array}
   }).then(function successCallback(response) {
       $scope.khipu_url = response.data.transaction_url;
+      $scope.hide();
     }, function errorCallback(response) {
       console.log(response);
       alert(response.data);
+      $scope.hide();
   });
 })
 

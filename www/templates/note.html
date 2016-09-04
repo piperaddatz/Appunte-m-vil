@@ -1,5 +1,5 @@
 <ion-view view-title="{{ note.name }}">
-  <ion-content>
+  <ion-content lazy-scroll>
     <div class="list card">
       <div class="item text-center">
         <h3>{{note.name}}</h3>
@@ -7,7 +7,7 @@
       </div>
 
       <div class="item item-image">
-        <img src="{{ note.preview }}">
+        <img image-lazy-src="{{note.preview}}" image-lazy-loader="android" >
       </div>
 
       <div class="item item-body">
