@@ -1,0 +1,38 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.ionicframework.conference589501"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.ionicframework.conference589501"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.ionicframework.conference589501"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.ionicframework.conference589501"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.ionicframework.conference589501"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.ionicframework.conference589501"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.ionicframework.conference589501"
+        },
+        "phonegap-facebook-plugin": {
+            "APP_ID": "1011131718993889",
+            "APP_NAME": "Appunte Civil - Test1",
+            "PACKAGE_NAME": "com.ionicframework.conference589501"
+        }
+    },
+    "dependent_plugins": {}
+}

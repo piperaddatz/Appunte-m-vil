@@ -1,0 +1,94 @@
+<ion-view view-title="{{ note.name }}">
+  <ion-content lazy-scroll>
+    <div class="list card">
+      <div class="item text-center">
+        <h3>{{note.name}}</h3>
+        <p>Creado por {{note.teacher}}</p>
+      </div>
+
+      <div class="item item-image">
+        <img image-lazy-src="{{note.preview}}" image-lazy-loader="android" >
+      </div>
+
+      <div class="item item-body">
+        <p>{{note.description}}</p>
+      </div>
+
+    </div>
+    
+    <br>
+    
+    <div class="list-card" ng-show="note.is_pay">
+      <div class="item text-center"><h3>Comprar {{note.name}}</h3></div>
+      <div class="item item-body">
+          <a class="button button-block button-positive" href="#/app/buyNote/{{ note.id }}">
+            Appunte Completo
+          </a>
+          <a class="button button-block button-positive" href="#/app/buyPerTopic/{{ note.id }}">
+            Appunte por cursos
+          </a>
+      </div>
+    </div>
+    
+    <div class="list-card" ng-show="!note.is_pay">
+      <div class="item text-center"><h3>Tomar {{note.name}}</h3></div>
+      <div class="item item-body">
+          <a class="button button-block button-positive" href="#/app/buyNote/{{ note.id }}">
+            ¡Gratis!
+          </a>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="list card">
+      <div class="item text-center">
+        <h3>Contenido</h3>
+      </div>
+      <div class="item item-body full-card-list">
+        <div ng-repeat="topic in note.topics">
+          <ion-item class="item-stable item-text-wrap"
+                    ng-click="toggleGroup(topic.topic)"
+                    ng-class="{active: isGroupShown(topic.topic)}">
+              <i class="icon" ng-class="isGroupShown(topic.topic) ? 'ion-minus' : 'ion-plus'"></i>
+              {{topic.topic.name}} <span class="badge badge-assertive">{{ topic.topic.questions}}</span>
+          </ion-item>
+          <ion-item class="item-accordion"
+                    ng-repeat="subtopic in topic.topic.subtopics"
+                    ng-show="isGroupShown(topic.topic)">
+            <p>{{subtopic.name}}</p>
+          </ion-item>
+        </div>
+      </div>
+    </div>
+    
+    <br>
+
+    <div class="list card">
+
+      <div class="item text-center">
+        <h3>Calificaciones</h3>
+         <p><i class="ion-android-star" ng-repeat="star in range(note.review)"></i> <i class="ion-ios-star-outline" ng-repeat="nostar in range(5 - note.review)"></i> {{ note.review }} ({{ note.total_reviews }})</p>
+      </div>
+
+      <div class="padding">
+        
+        <div class="list card" ng-repeat="review in note.reviews">
+
+          <div class="item item-avatar" >
+            <img src="{{review.user_image}}">
+            <h2>{{ review.user_name }}</h2>
+            <p><i class="ion-android-star" ng-repeat="star in range(review.rating)"></i> <i class="ion-ios-star-outline" ng-repeat="nostar in range(5 - review.rating)"></i> • {{ review.time_ago }} </p>
+          </div>
+
+          <div class="item item-body">
+            <p>
+              {{ review.content }}
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

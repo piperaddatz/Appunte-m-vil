@@ -1,0 +1,32 @@
+<ion-view view-title="Comprando Appunte {{note.name}}">
+<ion-content>
+	<div class="list card">
+      <div class="item text-center">
+        <h3>Temas</h3>
+       </div>
+     <div class="item item-body full-card-list">
+		<ul class="list">
+			<li class="item item-checkbox" ng-repeat="topic in note.topics">
+				{{ topic.topic.name }}
+				<label class="checkbox">
+					<input type="checkbox" checklist-model="topics" checklist-value="topic.topic.id" ng-change="check(topic.topic.id,topic.topic.price, checked)">
+				</label>
+			</li>
+		</ul>
+		<div class="row ">
+			<div class="col text-center">
+				<h3>Total a pagar: {{total | currency}} </h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<button class="button button-block button-positive" ng-click="buy()">
+	            	Comprar 
+	          	</button>
+			</div>
+		</div>
+	 </div>
+	</div>
+</ion-content>
+</ion-view>
+

@@ -1,0 +1,13 @@
+<ion-view view-title="Appuntes">
+  <ion-content>
+    <div class="list">
+	    <a class="item item-thumbnail-left" ng-repeat="note in notes" href="#/app/notes/{{note.id}}">
+	      <img src="{{ note.preview }}">
+	      <h2>{{ note.name }}</h2>
+	      <p><i class="ion-android-star" ng-repeat="star in range(note.review)"></i> <i class="ion-ios-star-outline" ng-repeat="nostar in range(5 - note.review)"></i> {{ note.review }} ({{ note.total_reviews }})</p>
+	      <p>por {{ note.teacher }}</p>
+	      <p>{{ note.is_pay }}</p>
+	    </a>
+    </div>
+  </ion-content>
+</ion-view>

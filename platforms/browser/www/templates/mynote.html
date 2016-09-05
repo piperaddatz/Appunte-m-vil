@@ -1,0 +1,24 @@
+<ion-view view-title="{{ myNote.name }}">
+  <ion-content>
+  	<div class="list card">
+      <div class="item text-center">
+        <h3>{{ myNote.name }}<h3>
+      </div>
+      <div class="item item-body full-card-list">
+        <div ng-repeat="topic in myNote.topics">
+          <ion-item class="item-stable item-text-wrap"
+                    ng-click="toggleGroup(topic.topic)"
+                    ng-class="{active: isGroupShown(topic.topic)}">
+              <i class="icon" ng-class="isGroupShown(topic.topic) ? 'ion-minus' : 'ion-plus'"></i>
+              {{topic.topic.name}} <span class="badge badge-assertive">{{ topic.topic.questions}}</span>
+          </ion-item>
+          <ion-item class="item-accordion"
+                    ng-repeat="subtopic in topic.topic.subtopics"
+                    ng-show="isGroupShown(topic.topic)" href="#/app/questions/{{ myNote.id }}/{{ topic.topic.id }}/{{ subtopic.id }}">
+            {{subtopic.name}}
+          </ion-item>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

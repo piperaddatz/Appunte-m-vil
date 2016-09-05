@@ -8,9 +8,7 @@
     David Galvez  
   </author>
   <content src="index.html"/>
-  <allow-navigation>
-    <allow-navigation href="*"/>
-  </allow-navigation>
+  <allow-navigation href="*"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>

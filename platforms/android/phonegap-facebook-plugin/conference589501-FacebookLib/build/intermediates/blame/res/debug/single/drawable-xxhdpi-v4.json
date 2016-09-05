@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "/home/juan/Documentos/Ionic/appunte/platforms/android/phonegap-facebook-plugin/conference589501-FacebookLib/build/intermediates/res/merged/debug/drawable-xxhdpi-v4/com_facebook_button_like_pressed.png",
+        "source": "/home/juan/Documentos/Ionic/appunte/platforms/android/phonegap-facebook-plugin/conference589501-FacebookLib/res/drawable-xxhdpi/com_facebook_button_like_pressed.png"
+    },
+    {
+        "merged": "/home/juan/Documentos/Ionic/appunte/platforms/android/phonegap-facebook-plugin/conference589501-FacebookLib/build/intermediates/res/merged/debug/drawable-xxhdpi-v4/com_facebook_button_like_background.png",
+        "source": "/home/juan/Documentos/Ionic/appunte/platforms/android/phonegap-facebook-plugin/conference589501-FacebookLib/res/drawable-xxhdpi/com_facebook_button_like_background.png"
+    },
+    {
+        "merged": "/home/juan/Documentos/Ionic/appunte/platforms/android/phonegap-facebook-plugin/conference589501-FacebookLib/build/intermediates/res/merged/debug/drawable-xxhdpi-v4/com_facebook_button_like_icon.png",
+        "source": "/home/juan/Documentos/Ionic/appunte/platforms/android/phonegap-facebook-plugin/conference589501-FacebookLib/res/drawable-xxhdpi/com_facebook_button_like_icon.png"
+    },
+    {
+        "merged": "/home/juan/Documentos/Ionic/appunte/platforms/android/phonegap-facebook-plugin/conference589501-FacebookLib/build/intermediates/res/merged/debug/drawable-xxhdpi-v4/com_facebook_button_like_icon_selected.png",
+        "source": "/home/juan/Documentos/Ionic/appunte/platforms/android/phonegap-facebook-plugin/conference589501-FacebookLib/res/drawable-xxhdpi/com_facebook_button_like_icon_selected.png"
+    },
+    {
+        "merged": "/home/juan/Documentos/Ionic/appunte/platforms/android/phonegap-facebook-plugin/conference589501-FacebookLib/build/intermediates/res/merged/debug/drawable-xxhdpi-v4/com_facebook_button_like_background_selected.png",
+        "source": "/home/juan/Documentos/Ionic/appunte/platforms/android/phonegap-facebook-plugin/conference589501-FacebookLib/res/drawable-xxhdpi/com_facebook_button_like_background_selected.png"
+    }
+]
