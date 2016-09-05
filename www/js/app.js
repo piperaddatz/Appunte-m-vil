@@ -4,11 +4,10 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ngOpenFB', 'checklist-model', 'ionicLazyLoad'])
+angular.module('starter', ['ionic', 'starter.controllers','ngCordova', 'checklist-model', 'ionicLazyLoad', 'ngCordovaOauth'])
 
 
-.run(function($ionicPlatform, ngFB, $timeout, $state) {
-  ngFB.init({appId: '1011131718993889'});
+.run(function($ionicPlatform, ngFB, $timeout, $state, $cordovaFacebook) {
   
   $timeout(function() {
       $state.go('login');
@@ -27,6 +26,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngOpenFB', 'checklis
       StatusBar.styleDefault();
     }
   });
+})
+
+.config(function($cordovaFacebookProvider) {
+  
 })
 
 .config(function($stateProvider, $urlRouterProvider) {

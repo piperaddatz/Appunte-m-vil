@@ -4,24 +4,9 @@ var app = angular.module('starter.controllers', ['starter.services', 'ngOpenFB']
   
 })
 
-.controller('LoginCtrl', function($scope,$http,$rootScope, $state, $ionicLoading) {
+.controller('LoginCtrl', function($scope,$http,$rootScope, $state, $ionicLoading, $cordovaFacebook ) {
     $scope.data = {};
   
-    // window.cordovaOauth = $cordovaOauth;
-    // window.http = $http;
-
-    // $scope.loginFacebook = function ()
-    // { facebookLogin(window.cordovaOauth, window.http); };
-
-    // function facebookLogin($cordovaOauth, $http)
-    // {
-    //     $cordovaOauth.facebook("1633195863589792", ["email", "public_profile"], {redirect_uri: "http://localhost/callback"}).then(function(result){
-    //         displayData($http, result.access_token);
-    //         console.log(result.access_token);
-    //     },  function(error){
-    //             alert("Error: " + error);
-    //     });
-    // }
 
     $scope.show = function() {
       $ionicLoading.show({
@@ -36,6 +21,30 @@ var app = angular.module('starter.controllers', ['starter.services', 'ngOpenFB']
          console.log("The loading indicator is now hidden");
       });
     };  
+
+    $scope.login_facebook = function() {
+          $cordovaFacebook.login(["public_profile", "email", "user_friends"])
+          .then(function(success) {
+          
+            $scope.show();
+
+            $http({
+              method: 'GET',
+              url: 'https://appunte.herokuapp.com/ionic_login_facebook',
+              params: { facebook_id: success.authResponse.userID }
+            }).then(function successCallback(response) {
+                // Login user
+                 window.localStorage.setItem('user',JSON.stringify(response));
+                 $state.go('app.notes');
+                 $scope.hide();
+              }, function errorCallback(response) {
+                $scope.hide();
+                console.log(response);
+                alert(response.data);
+            });
+          }, function (error) {
+          });
+    };
 
     $scope.login = function() {
       console.log('Doing login', $scope.loginData);
