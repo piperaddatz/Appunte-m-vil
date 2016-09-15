@@ -4,9 +4,16 @@ var app = angular.module('starter.controllers', ['starter.services', 'ngOpenFB']
   
 })
 
-.controller('LoginCtrl', function($scope,$http,$rootScope, $state, $ionicLoading, $cordovaFacebook ) {
+.controller('LoginCtrl', function($scope,$http,$rootScope, $state, $ionicLoading, $cordovaFacebook, $cookies ) {
     $scope.data = {};
-  
+    
+
+
+    if($cookies.get("appunte_user")){
+      var value = $cookies.get("appunte_user");
+      window.localStorage.setItem('user',value);
+      $state.go('app.notes');
+    }
 
     $scope.show = function() {
       $ionicLoading.show({
@@ -35,6 +42,7 @@ var app = angular.module('starter.controllers', ['starter.services', 'ngOpenFB']
             }).then(function successCallback(response) {
                 // Login user
                  window.localStorage.setItem('user',JSON.stringify(response));
+                 $cookies.put("appunte_user", response); 
                  $state.go('app.notes');
                  $scope.hide();
               }, function errorCallback(response) {
@@ -58,6 +66,9 @@ var app = angular.module('starter.controllers', ['starter.services', 'ngOpenFB']
       }).then(function successCallback(response) {
           // Login user
            window.localStorage.setItem('user',JSON.stringify(response));
+           var json = response;
+           console.log(json);
+           $cookies.put("appunte_user", JSON.stringify(json));
            $state.go('app.notes');
            $scope.hide();
         }, function errorCallback(response) {

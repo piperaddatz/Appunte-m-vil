@@ -1,7 +1,14 @@
-<ion-view view-title="Appuntes">
-  <ion-content>
-    <div class="list">
-	    <a class="item item-thumbnail-left" ng-repeat="note in notes" href="#/app/notes/{{note.id}}">
+<ion-view view-title="<span class='tittle-principal'><span>APP</span>UNTE</span>">
+ <ion-content scroller class="gray">
+	<div class="list list-inset no-margin-custom-list">
+	  <label class="item item-input custom-search">
+	    <i class="ion-ios-search-strong"></i>
+	    <input type="text" placeholder="Buscar" ng-model="query">
+	  </label>
+	</div>
+
+    <div class="list list-notes">
+	    <a class="item item-thumbnail-left" ng-repeat="note in notes | filter: query" href="#/app/notes/{{note.id}}">
 	      <img src="{{ note.preview }}">
 	      <h2>{{ note.name }}</h2>
 	      <p><i class="ion-android-star" ng-repeat="star in range(note.review)"></i> <i class="ion-ios-star-outline" ng-repeat="nostar in range(5 - note.review)"></i> {{ note.review }} ({{ note.total_reviews }})</p>
